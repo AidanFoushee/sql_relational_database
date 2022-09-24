@@ -42,5 +42,14 @@ while choice != 5:
         connection.commit()
         print()
 
+    elif choice == 3:
+        fname = input('First name: ')
+        lname = input('Last name: ')
+        calling = input('What is their new calling: ')
+        values = (calling, fname + lname)
+        cursor.execute('UPDATE ward SET calling = ? WHERE fname + lname = ?', values)
+        connection.commit()
+        print()
+
 
 connection.close()
