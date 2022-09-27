@@ -1,3 +1,4 @@
+from operator import contains
 import sqlite3
 
 connection = sqlite3.connect('ward.db')
@@ -10,6 +11,14 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS ward (
     age INT,
     calling TEXT
 )''')
+
+def get_name(cursor):
+    cursor.execute("SELECT fname, lname FROM ward")
+    results = cursor.fetchall()
+    for index in range(results.length):
+        print(f"{index+1}. {results[index][0]}")
+    choice = int(input("Select> "))
+    return results[choice - 1][0]
 
 choice = 0
 while choice != 5:
@@ -46,10 +55,13 @@ while choice != 5:
         fname = input('First name: ')
         lname = input('Last name: ')
         calling = input('What is their new calling: ')
-        values = (calling, fname + lname)
-        cursor.execute('UPDATE ward SET calling = ? WHERE fname + lname = ?', values)
+        values = (calling, fname, lname)
+        cursor.execute('UPDATE ward SET calling = ? WHERE fname = ? AND lname = ?', values)
         connection.commit()
         print()
 
+    elif choice == 4:
+        name = get_name(cursor)
+        cursor.execute('DELETE FROM ward WHERE name = ?', name)
 
 connection.close()
