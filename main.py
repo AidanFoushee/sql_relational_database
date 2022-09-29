@@ -15,10 +15,10 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS ward (
 def get_name(cursor):
     cursor.execute("SELECT fname, lname FROM ward")
     results = cursor.fetchall()
-    for index in range(results.length):
-        print(f"{index+1}. {results[index][0]}")
+    for index in range(len(results)):
+        print(f"{index+1}. {results[index][0]} {results[index][1]}")
     choice = int(input("Select> "))
-    return results[choice - 1][0]
+    return results[choice - 1][0] + results[choice-1][1]
 
 choice = 0
 while choice != 5:
@@ -61,7 +61,11 @@ while choice != 5:
         print()
 
     elif choice == 4:
-        name = get_name(cursor)
-        cursor.execute('DELETE FROM ward WHERE name = ?', name)
+        #name = get_name(cursor)
+        fname = input('First name of the person you want to delete: ')
+        lname = input('Last name of the person you want to delete: ')
+        values = (fname, lname)
+        cursor.execute('DELETE FROM ward WHERE fname = ? AND lname = ?', values)
+        print()
 
 connection.close()
