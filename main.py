@@ -12,13 +12,13 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS ward (
     calling TEXT
 )''')
 
-def get_name(cursor):
-    cursor.execute("SELECT fname, lname FROM ward")
-    results = cursor.fetchall()
-    for index in range(len(results)):
-        print(f"{index+1}. {results[index][0]} {results[index][1]}")
-    choice = int(input("Select> "))
-    return results[choice - 1][0] + results[choice-1][1]
+# def get_name(cursor):
+#     cursor.execute("SELECT fname, lname FROM ward")
+#     results = cursor.fetchall()
+#     for index in range(len(results)):
+#         print(f"{index+1}. {results[index][0]} {results[index][1]}")
+#     choice = int(input("Select> "))
+#     return results[choice - 1][0] + results[choice-1][1]
 
 def sort_oldest_youngest(cursor, gender):
     cursor.execute('SELECT fname, lname, age FROM ward WHERE gender = ? ORDER BY age DESC', gender)
