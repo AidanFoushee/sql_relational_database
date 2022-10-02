@@ -8,7 +8,7 @@ I wanted to further my learning about databases and discover why SQL relational 
 
 {Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the software running, a walkthrough of the code, and a view of how created the Relational Database.}
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://www.youtube.com/watch?v=hmxYfPzFlLI)
 
 # Relational Database
 
